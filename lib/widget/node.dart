@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// A widget that toggles between a circular and square shape on tap.
+/// A round widget that contains an image.
 class Node extends StatefulWidget {
   const Node({super.key, required this.image});
 
@@ -12,7 +12,7 @@ class Node extends StatefulWidget {
 
 class _NodeState extends State<Node> {
   bool selected = false;
-  final double diameter = 128;
+  final double avatarDiameter = 128;
 
   @override
   Widget build(BuildContext context) {
@@ -23,18 +23,35 @@ class _NodeState extends State<Node> {
         });
       },
       child: AnimatedContainer(
-        width: selected ? diameter * 2 : diameter,
-        height: selected ? diameter * 2 : diameter,
+        width: selected ? avatarDiameter * 3 : avatarDiameter,
+        height: selected ? avatarDiameter * 2 : avatarDiameter,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOut, // Optional: Adds a smooth curve to the animation
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(selected ? diameter/4 : diameter / 2),
-          border: Border.all(color: Colors.white, width: 6.0), // White border
-          image: DecorationImage(
-            image: NetworkImage(widget.image),
-            fit: BoxFit.cover,
+          color: selected ? Colors.blue.withOpacity(0.2) : Colors.transparent,
+          border: Border.all(color: Colors.white, width: 6.0),
+          borderRadius:
+              BorderRadius.circular(selected ? 16 : avatarDiameter / 2),
+        ),
+        child: ClipRRect(
+          borderRadius:
+              BorderRadius.circular(selected ? 16 : avatarDiameter / 2),
+          child: Stack(
+            children: [
+              // Other widgets can be added here when expanded
+              AnimatedPositioned(
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeInOut,
+                top: selected ? 6.0 : (avatarDiameter / 2) - (avatarDiameter / 2),
+                left: selected ? 6.0 : (avatarDiameter / 2) - (avatarDiameter / 2),
+                child: CircleAvatar(
+                  radius: avatarDiameter / 2,
+                  backgroundImage: NetworkImage(widget.image),
+                ),
+              ),
+            ],
           ),
         ),
-        duration: const Duration(milliseconds: 500),
-        curve: Curves.easeInOut,
       ),
     );
   }
