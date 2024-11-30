@@ -5,13 +5,11 @@ import "package:flutter/material.dart";
 class Graph {
   Map<int, int> edges;
   List<Widget> nodes;
-  Point<double> center;
   Point<double> widgetSize;
   double radius;
 
   late Map<int, int> _depths;
   late Map<int, List<int>> _depthLevel;
-  late Map<int, Point<double>> _positions;
   late List<Cluster> _clusters;
 
   Cluster _computeCluster(int node) {
@@ -61,7 +59,7 @@ class Graph {
     return transforms;
   }
 
-  Graph(this.nodes, this.edges, this.center, this.radius, this.widgetSize) {
+  Graph(this.nodes, this.edges, this.radius, this.widgetSize) {
     _depths = {};
     _depthLevel = {};
     _positions = {};
