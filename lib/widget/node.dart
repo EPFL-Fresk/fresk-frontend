@@ -2,10 +2,11 @@ import "package:flutter/material.dart";
 
 /// A round widget that contains an image.
 class Node extends StatefulWidget {
-  const Node({super.key, required this.name, required this.image});
+  const Node({super.key, required this.name, required this.image, required this.description});
 
   final String name;
   final String image;
+  final String description;
 
   @override
   State<Node> createState() => _NodeState();
@@ -29,7 +30,7 @@ class _NodeState extends State<Node> {
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOut,
         decoration: BoxDecoration(
-          color: Colors.blue.withOpacity(0.2),
+          color: selected ? Colors.blue.withOpacity(0.2): Colors.transparent,
           border: Border.all(color: Colors.white, width: 6.0),
           borderRadius:
               BorderRadius.circular(selected ? 16 : avatarDiameter / 2),
@@ -40,6 +41,18 @@ class _NodeState extends State<Node> {
           child: Stack(
             children: [
               Logo(selected: selected, avatarDiameter: avatarDiameter, widget: widget),
+              if(selected) // If selected, show name and 
+                  Positioned(
+                    top: 0,
+                    left: avatarDiameter + 16,
+                    child: Text(
+                      widget.name,
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
             ],
           ),
         ),
