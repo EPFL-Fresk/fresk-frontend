@@ -1,3 +1,3 @@
-# fresk
+# Fresk
 
-A new Flutter project.
+Flutter frontend for the Fresk project !
