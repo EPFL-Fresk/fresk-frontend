@@ -8,8 +8,18 @@ class Fresk extends StatefulWidget {
 }
 
 class FreskState extends State<Fresk> {
+  List<Widget> nodes = [];
+
   @override
   Widget build(BuildContext context) {
-    return const Text("Welcome to Fresk !");
+    return InteractiveViewer(
+      child: Container(
+        width: double.infinity,
+        height: double.infinity,
+        child: Stack(
+          children: nodes,
+        ),
+      ),
+    );
   }
 }
