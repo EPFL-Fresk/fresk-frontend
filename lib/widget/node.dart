@@ -40,7 +40,7 @@ class _NodeState extends State<Node> {
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOut,
         decoration: BoxDecoration(
-          color: selected ? Colors.blue.withOpacity(0.2) : Colors.transparent,
+          color: selected ? Colors.white : Colors.transparent,
           border: Border.all(color: Colors.white, width: 6.0),
           borderRadius:
               BorderRadius.circular(selected ? 16 : avatarDiameter / 2),
@@ -113,8 +113,8 @@ class NodeLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedPositioned(
-      top: (avatarDiameter / 2) - (avatarDiameter / 2),
-      left: (avatarDiameter / 2) - (avatarDiameter / 2),
+      top: selected ? 8.0 : (avatarDiameter / 2) - (avatarDiameter / 2),
+      left: selected ? 8.0 : (avatarDiameter / 2) - (avatarDiameter / 2),
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOut,
         width: avatarDiameter,
