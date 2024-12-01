@@ -26,7 +26,7 @@ class _NodeState extends State<Node> {
       },
       child: AnimatedContainer(
         width: selected ? avatarDiameter * 3 : avatarDiameter,
-        height: selected ? avatarDiameter * 2 : avatarDiameter,
+        height: selected ? avatarDiameter * 3 : avatarDiameter,
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOut,
         decoration: BoxDecoration(
@@ -41,18 +41,34 @@ class _NodeState extends State<Node> {
           child: Stack(
             children: [
               Logo(selected: selected, avatarDiameter: avatarDiameter, widget: widget),
-              if(selected) // If selected, show name and 
-                  Positioned(
-                    top: 0,
-                    left: avatarDiameter + 16,
-                    child: Text(
-                      widget.name,
-                      style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
+              if(selected) // If selected, show name and description
+                Column(
+                  children: [
+                    Positioned(
+                      top: 16,
+                      left: avatarDiameter + 16,
+                      child: Text(
+                        widget.name,
+                        style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
+                    Positioned(
+                      child:
+                      Padding(
+                        padding: const EdgeInsets.only(top: 48, left: 16, right: 16),
+                        child: Text(
+                          widget.description,
+                          style: const TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
             ],
           ),
         ),
