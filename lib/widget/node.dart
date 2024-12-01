@@ -1,6 +1,11 @@
 import "package:flutter/material.dart";
 
-/// A node widget that displays an image and text when tapped.
+/// A widget representing a node in the graph
+/// Expands when tapped and displays text below the image.
+/// The widget can be tapped again to collapse.
+/// [name] is the name of the node.
+/// [image] is the URL of the image to display.
+/// [description] is the description of the node.
 class Node extends StatefulWidget {
   const Node({super.key, required this.name, required this.image, required this.description});
 
@@ -24,6 +29,7 @@ class _NodeState extends State<Node> {
         setState(() {
           selected = !selected;
           if (selected) {
+            // Delay text display to after animation
             Future.delayed(const Duration(milliseconds: 500), () {
               setState(() {
                 showText = true;
@@ -43,7 +49,7 @@ class _NodeState extends State<Node> {
           color: selected ? Colors.white : Colors.transparent,
           border: Border.all(color: Colors.white, width: 6.0),
           borderRadius:
-              BorderRadius.circular(selected ? 16 : avatarDiameter / 2),
+              BorderRadius.circular(selected ? 16 : avatarDiameter / 2), // Rectangle on selected, else circle
         ),
         child: ClipRRect(
           borderRadius:
@@ -74,7 +80,7 @@ class NodeText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: avatarDiameter * 1.2,
+      top: avatarDiameter * 1.2, // Position text below the avatar
       left: 16,
       right: 16,
       child: Column(
@@ -98,6 +104,8 @@ class NodeText extends StatelessWidget {
   }
 }
 
+/// Displays the logo of the node
+/// [selected] is true if the node is selected.
 class NodeLogo extends StatelessWidget {
   const NodeLogo({
     super.key,
