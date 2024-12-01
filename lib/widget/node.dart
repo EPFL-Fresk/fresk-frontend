@@ -7,11 +7,12 @@ import "package:flutter/material.dart";
 /// [image] is the URL of the image to display.
 /// [description] is the description of the node.
 class Node extends StatefulWidget {
-  const Node({super.key, required this.name, required this.image, required this.description});
+  const Node({super.key, required this.name, required this.image, required this.description, this.nodeDiameter = 128});
 
   final String name;
   final String image;
   final String description;
+  final double nodeDiameter;
 
   @override
   State<Node> createState() => _NodeState();
@@ -20,7 +21,6 @@ class Node extends StatefulWidget {
 class _NodeState extends State<Node> {
   bool selected = false;
   bool showText = false; // Controls text visibility
-  final double avatarDiameter = 128;
 
   @override
   Widget build(BuildContext context) {
@@ -41,24 +41,24 @@ class _NodeState extends State<Node> {
         });
       },
       child: AnimatedContainer(
-        width: selected ? avatarDiameter * 3 : avatarDiameter,
-        height: selected ? avatarDiameter * 3 : avatarDiameter,
+        width: selected ? widget.nodeDiameter * 3 : widget.nodeDiameter,
+        height: selected ? widget.nodeDiameter * 3 : widget.nodeDiameter,
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOut,
         decoration: BoxDecoration(
           color: selected ? Colors.white : Colors.transparent,
           border: Border.all(color: Colors.white, width: 6.0),
           borderRadius:
-              BorderRadius.circular(selected ? 16 : avatarDiameter / 2), // Rectangle on selected, else circle
+              BorderRadius.circular(selected ? 16 : widget.nodeDiameter / 2), // Rectangle on selected, else circle
         ),
         child: ClipRRect(
           borderRadius:
-              BorderRadius.circular(selected ? 16 : avatarDiameter / 2),
+              BorderRadius.circular(selected ? 16 : widget.nodeDiameter / 2),
           child: Stack(
             children: [
-              NodeLogo(selected: selected, avatarDiameter: avatarDiameter, widget: widget),
+              NodeLogo(selected: selected, avatarDiameter: widget.nodeDiameter, widget: widget),
               if (selected && showText) // Display text only after animation
-                NodeText(avatarDiameter: avatarDiameter, widget: widget),
+                NodeText(avatarDiameter: widget.nodeDiameter, widget: widget),
             ],
           ),
         ),
