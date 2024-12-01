@@ -92,6 +92,8 @@ class NodeText extends StatelessWidget {
               fontSize: 24,
               fontWeight: FontWeight.bold,
             ),
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
           ),
           const SizedBox(height: 8),
           Text(
