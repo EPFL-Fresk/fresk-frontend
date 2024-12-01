@@ -97,6 +97,8 @@ class NodeText extends StatelessWidget {
           Text(
             widget.description,
             style: const TextStyle(fontSize: 16),
+            overflow: TextOverflow.ellipsis,
+            maxLines: 5,
           ),
         ],
       ),
