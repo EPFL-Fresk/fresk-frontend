@@ -44,19 +44,21 @@ class _NodeState extends State<Node> {
               if(selected) // If selected, show name and description
                 Column(
                   children: [
-                    Positioned(
-                      top: 16,
-                      left: avatarDiameter + 16,
-                      child: Text(
-                        widget.name,
-                        style: const TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
+                    Row(
+                      children: [
+                        SizedBox(width: avatarDiameter),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 16, left: 16),
+                          child: Text(
+                            widget.name,
+                            style: const TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                    Positioned(
-                      child:
                       Padding(
                         padding: const EdgeInsets.only(top: 48, left: 16, right: 16),
                         child: Text(
@@ -65,7 +67,6 @@ class _NodeState extends State<Node> {
                             fontSize: 16,
                           ),
                         ),
-                      ),
                     ),
                   ],
                 ),
