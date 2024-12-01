@@ -62,7 +62,6 @@ class Graph {
   Graph(this.nodes, this.edges, this.radius, this.widgetSize) {
     _depths = {};
     _depthLevel = {};
-    _positions = {};
     _computeDepths();
     _depths.forEach((n, i) {
       if (_depthLevel.containsKey(i)) {
