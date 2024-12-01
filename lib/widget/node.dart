@@ -19,7 +19,7 @@ class _NodeState extends State<Node> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return GestureDetector( // Tap on widget to select
       onTap: () {
         setState(() {
           selected = !selected;
@@ -112,18 +112,16 @@ class NodeLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      top: selected ? 6.0 : (avatarDiameter / 2) - (avatarDiameter / 2),
-      left: selected ? 6.0 : (avatarDiameter / 2) - (avatarDiameter / 2),
-      child: AnimatedContainer(
+    return AnimatedPositioned(
+      top: (avatarDiameter / 2) - (avatarDiameter / 2),
+      left: (avatarDiameter / 2) - (avatarDiameter / 2),
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOut,
-        width: selected ? avatarDiameter : avatarDiameter,
-        height: selected ? avatarDiameter : avatarDiameter,
+        width: avatarDiameter,
+        height: avatarDiameter,
         child: CircleAvatar(
           backgroundImage: NetworkImage(widget.image),
         ),
-      ),
     );
   }
 }
